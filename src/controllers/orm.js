@@ -1,5 +1,5 @@
 // required files, so that you can connect and search the database
-var connection = require('./connections.js');
+var connection = require('../config.json');
 
 
 function printQuestionMarks(ValuesGivenArrayNumber) {
@@ -48,9 +48,9 @@ var orm = {
   },
 
   updateOne: function(table, burgerId, devoured, cb) {
-    var queryString = 'UPDATE ' + table + ' SET ' + 'devoured= ' + devoured + ' WHERE ' 
-    + 'id=' + burgerId; 
-    
+    var queryString = 'UPDATE ' + table + ' SET ' + 'devoured= ' + devoured + ' WHERE '
+    + 'id=' + burgerId;
+
     console.log(queryString);
 
     connection.query(queryString, function(err, result) {
@@ -70,7 +70,7 @@ var orm = {
         throw err;
       }
       cb(result);
-    });  
+    });
   },
 
 };
