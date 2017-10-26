@@ -1,10 +1,10 @@
 <div class="container">
 
   <div class="col-xs-12 text-center" id="top-bar">
-    <h1> Eat-Da-Burger Homework Assignment 14! </h1>
-    <small>Originally just html, some workable routing '/' and other basics, I am revamped the weibsite to be fully intented of the homework assignment months ago.</small><br />
-    <small>You can now display all burgers, with lite cssing, create new burgers in an existing table, and consume or update the table. The extra bit is being able to delete something from the table.</small></br>
-    <small>If interested, take a look at my github and web profile to see the history of coding, mostly javascript projects I have worked on. 
+    <h1> Sequelize Ver. of Eat-Da-Burger Assignment 15! </h1>
+    <small>Mostly the same html/css code. However behind the scenes the structure of the files were or in line with work standards, and es6 was implemented.</small>
+    <small>The database still uses mysql, but now uses sequelize as model structure.</small>
+    <small>If interested, take a look at my github and web profile to see the history of coding, mostly javascript projects I have worked on.
       <br><br>
     <div class='row'>
       <button class="btn btn-link indent" onclick="window.open('https://github.com/Caromin')">Github</button>
@@ -25,13 +25,13 @@
             <div class='col-6' style='text-align: left;'>
               <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burger_name}}" readonly>
             </div>
-            <div class='col-3'> 
+            <div class='col-3'>
                 <form method='POST' action='/update?_method=PUT'>
                   <input input type="hidden" type="text" name="burger_id" value={{this.id}}>
                 <button type="submit" id='{{this.id}}' class=" test btn btn-default">Devour it!</button>
               </form>
             </div>
-            <div class='col-3'> 
+            <div class='col-3'>
                 <form method='POST' action='/update?_method=DELETE'>
                   <input input type="hidden" type="text" name="burger_id" value={{this.id}} >
                 <button type="submit" id='{{this.id}}' class=" test btn btn-default">Delete</button>
@@ -41,7 +41,7 @@
           {{/unless}}
         {{/each}}
     </div>
-  
+
     <div class="col text-center" id='two' class="task">
       <h3>Burgers Eaten</h3>
       <div class="row"><br /><br />
@@ -51,12 +51,12 @@
             <div class='col-9'>
             <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burger_name}}" readonly>
             </div>
-            <div class='col-3'> 
+            <div class='col-3'>
                 <form method='POST' action='/update?_method=DELETE'>
                   <input input type="hidden" type="text" name="burger_id" value={{this.id}}>
                 <button type="submit" id='{{this.id}}' class=" test btn btn-default">Delete</button>
               </form>
-            </div>  
+            </div>
           {{/if}}
         {{/each}}
     </div>

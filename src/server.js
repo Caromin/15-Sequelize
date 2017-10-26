@@ -1,5 +1,4 @@
 // required npm packages
-const Sequelize = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride  = require('method-override');
@@ -7,27 +6,21 @@ const exphbs = require('express-handlebars');
 
 // Import routes and give the server access to them.
 const routes = require('./controllers/routes');
-
 const app = express();
 // all caps means it will not change
 const PORT = process.env.PORT || 8000;
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname));
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 // must be used before any module needs to know the method of request, ex. get, post
-
 // Example call with query override using HTML <form>:
 // <form method="POST" action="/resource?_method=DELETE">
 //   <button type="submit">Delete resource</button>
 // </form>
 //so instead of a router.post the route will be looking for router.delete
 app.use(methodOverride("_method"));
-
 
 //this is needed if you are using helper functions
 const hbs = exphbs.create({
