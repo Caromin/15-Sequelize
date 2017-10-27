@@ -1,16 +1,15 @@
 // required packages
-var express = require('express');
+const express = require('express');
 // alternative to app.get where (app) is passed in from the server.js file
-var router = express.Router();
+const router = express.Router();
+const models = require('./../models');
 
 //when I say burger, I am saying go to burger.selectAll inside of burger.js
 router.get("/", function(req, res) {
-  // burger.selectAll(function(result) {
-  //   // wrapper for orm.js that using MySQL query callback will return burger_data, render to index with handlebar
-  //   // when I render the index page from handlebars view, I am passing over the burgerData (switch can be named anything)
-  //   // and setting the key to burger_data
-    res.render("index");
-  // });
+  models.burger.findAll().then(found => {
+    console.log(found);
+     res.render("index");
+  })
 });
 
 // post route -> back to index

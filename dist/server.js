@@ -7,21 +7,29 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 
+//execute file that will connect to mysql database
+var sequelize = new Sequelize('sequelizeburgers_db', 'root', 'Learning1', {
+  host: 'localhost',
+  dialect: 'mysql',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
 // Import routes and give the server access to them.
 var routes = require('./controllers/routes');
-
 var app = express();
 // all caps means it will not change
 var PORT = process.env.PORT || 8000;
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname));
-
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 // must be used before any module needs to know the method of request, ex. get, post
-
 // Example call with query override using HTML <form>:
 // <form method="POST" action="/resource?_method=DELETE">
 //   <button type="submit">Delete resource</button>
@@ -31,14 +39,14 @@ app.use(methodOverride("_method"));
 
 //this is needed if you are using helper functions
 var hbs = exphbs.create({
-	// Specify helpers which are only registered on this instance.
-	helpers: {
-		plusOne: function plusOne(val) {
-			return parseInt(val) + 1;
-		}
-	},
-	//sets the default layout to main.handlebars
-	defaultLayout: 'main'
+  // Specify helpers which are only registered on this instance.
+  helpers: {
+    plusOne: function plusOne(val) {
+      return parseInt(val) + 1;
+    }
+  },
+  //sets the default layout to main.handlebars
+  defaultLayout: 'main'
 });
 
 //hbs.engine would be used if you have custom helpers/other settings
@@ -54,5 +62,12 @@ app.use("/update", routes);
 
 //just to make sure the port is functioning as intended
 app.listen(PORT, function () {
-	console.log("Listening to port: " + PORT);
+  console.log("Listening to port: " + PORT);
+});
+
+//testing if sequelize is connected, working.
+sequelize.authenticate().then(function () {
+  console.log('Connection has been established successfully.');
+}).catch(function (err) {
+  console.error('Unable to connect to the database:', err);
 });

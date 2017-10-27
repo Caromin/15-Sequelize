@@ -1,12 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Burgers = sequelize.define('Burgers', {
-    burger_name: {
-      type: Sequelize.STRING,
+  var Burger = sequelize.define('Burgers', {
+    burgerName: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     devoured: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   }, {
@@ -16,5 +16,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Burgers;
+  return Burger;
 };

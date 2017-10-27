@@ -1,8 +1,21 @@
 // required npm packages
+const Sequelize = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride  = require('method-override');
 const exphbs = require('express-handlebars');
+
+//execute file that will connect to mysql database
+const sequelize = new Sequelize('sequelizeburgers_db', 'root', 'Learning1', {
+  host: 'localhost',
+  dialect: 'mysql',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
 
 // Import routes and give the server access to them.
 const routes = require('./controllers/routes');
@@ -49,3 +62,13 @@ app.use("/update", routes);
 app.listen(PORT, function() {
 	console.log("Listening to port: " + PORT);
 });
+
+//testing if sequelize is connected, working.
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
