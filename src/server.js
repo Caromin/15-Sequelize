@@ -20,7 +20,7 @@ const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d
   pool: {
     max: 10,
     min: 0,
-    maxIdleTime: 120000,
+    idle: 75000,
     reconnect: reconnectOptions || true
   }
 });
