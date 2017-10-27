@@ -11,9 +11,9 @@ const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d
   dialect: 'mysql',
 
   pool: {
-    max: 5,
+    max: 10,
     min: 0,
-    idle: 300000,
+    maxIdleTime: 120000,
   }
 });
 
