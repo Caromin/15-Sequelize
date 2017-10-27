@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 const methodOverride  = require('method-override');
 const exphbs = require('express-handlebars');
 
+const reconnectOptions = {
+  max_retries: 999,
+  onRetry: function(count) {
+    console.log("connection lost, trying to reconnect ("+count+")");
+  }
+};
+
 //execute file that will connect to mysql database
 const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d4dcaf', {
   host: 'us-cdbr-iron-east-05.cleardb.net',
@@ -14,8 +21,40 @@ const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d
     max: 10,
     min: 0,
     maxIdleTime: 120000,
+    reconnect: reconnectOptions || true
   }
 });
+
+//
+// // needed to connect to the database
+// var mysql = require('mysql');
+//
+// // setting the connection to a variable
+// var pool = mysql.createPool( {
+// 	connectTimeout: 300000,
+// 	host: 'us-cdbr-iron-east-05.cleardb.net',
+// 	user: 'bac4edfa125487',
+// 	password: '68c188c3',
+// 	database: 'heroku_82100a74448265a'
+// });
+//
+// //found online to help trouble shoot the server disconnect when using cleardb
+// function handleDisconnect() {
+//   pool.getConnection(function(err, connection){
+//       if(err) { return; }
+//       connection.query( "SELECT 1", function(err, rows) {
+//         connection.release();
+//         if (err) {
+//             console.log("QUERY ERROR: " + err);
+//         }
+//       });
+//   });
+// }
+//
+//
+// handleDisconnect();
+
+
 
 // Import routes and give the server access to them.
 const routes = require('./controllers/routes');
