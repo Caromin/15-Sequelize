@@ -12,7 +12,7 @@ const sequelize = new Sequelize('xnu6trfzzawwpqj1', 'e5xlptjfuze1r0kc', 'rbmjz6s
   logging: false,
   pool: {
     max: 10,
-    min: 0,
+    min: 1,
     idle: 75000
   }
 });

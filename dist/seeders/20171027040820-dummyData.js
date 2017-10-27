@@ -12,8 +12,9 @@ module.exports = {
       }], {});
     */
 
-    // this bulkInsert is being pointed to the models burgers.js
-    return queryInterface.bulkInsert('burgers', [{
+    // this bulkInsert is being pointed to the name of the table in burgers.js
+    //for cleardb it was lowercase, but mariadb it was uppercase
+    return queryInterface.bulkInsert('Burgers', [{
       burgerName: 'firstBurgerSequelize',
       devoured: true
     }, {
