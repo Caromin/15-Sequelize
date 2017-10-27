@@ -13,7 +13,7 @@ const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d
   pool: {
     max: 5,
     min: 0,
-    idle: 10000
+    idle: 300000,
   }
 });
 
