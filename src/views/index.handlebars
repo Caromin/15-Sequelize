@@ -23,7 +23,7 @@
           {{#unless this.devoured}}
           <div class='row'>
             <div class='col-6' style='text-align: left;'>
-              <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burger_name}}" readonly>
+              <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burgerName}}" readonly>
             </div>
             <div class='col-3'>
                 <form method='POST' action='/update?_method=PUT'>
@@ -49,7 +49,7 @@
         {{!-- if = if it returns false, undefined, null, '', 0 , [], it will not render/run --}}
           {{#if this.devoured}}
             <div class='col-9'>
-            <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burger_name}}" readonly>
+            <input class="form-control" type="text" placeholder="{{ plusOne @index}} . {{this.burgerName}}" readonly>
             </div>
             <div class='col-3'>
                 <form method='POST' action='/update?_method=DELETE'>
