@@ -29,7 +29,17 @@ router.get("/", function(req, res) {
 });
 
 router.post('/create', function(req, res) {
+  //checked to see if req.body is functioning correctly, yes.
+  // console.log('this is burger name: ' + (req.body.burgerName).toString());
+  // REMEBER: newBurger is just renamed title of data, can be named anything!!!
+  models.Burger.create({burgerName: (req.body.burgerName).toString()}).then(newBurger => {
+    //just converting the data to plain text in node (plain: true)
+    console.log(newBurger.get({
+      plain: true
+    }));
+    //then going back to route '/' once the burger is created
     res.redirect("/");
+  });
 });
 
 router.put('/update', function(req, res) {
