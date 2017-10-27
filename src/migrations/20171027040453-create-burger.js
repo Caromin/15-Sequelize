@@ -1,6 +1,8 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
+    //table name should be pluralized and same as model variable
+    // else errors will error and point to routes 
     return queryInterface.createTable('Burgers', {
       id: {
         allowNull: false,

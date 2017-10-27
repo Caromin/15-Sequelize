@@ -11,7 +11,9 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Burgers', [{
+
+    // this bulkInsert is being pointed to the models burgers.js
+    return queryInterface.bulkInsert('burgers', [{
       burgerName: 'firstBurgerSequelize',
       devoured: true
     }, {

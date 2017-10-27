@@ -6,37 +6,25 @@ var express = require('express');
 var router = express.Router();
 var models = require('./../models');
 
-//when I say burger, I am saying go to burger.selectAll inside of burger.js
 router.get("/", function (req, res) {
-  models.burger.findAll().then(function (found) {
-    console.log(found);
+    //Burger must be capitalized, because it is calling the variable inside of the burger model
+    models.Burger.findAll({ where: { burgerName: 'secondBurger' } }).then(function (found) {
+        console.log(found.burgerName);
+    });
+
     res.render("index");
-  });
 });
 
-// post route -> back to index
 router.post('/create', function (req, res) {
-  // takes the request object using it as input for buger.addBurger
-  // burger.insertOne(req.body.burger_name, function(result) {
-  //   // wrapper for orm.js that using MySQL insert callback will return a log to console,
-  //   // render back to index with handle
-  //   res.redirect("/");
-  // });
+    res.redirect("/");
 });
 
 router.put('/update', function (req, res) {
-  //the burger_id comes from name='burger_id' from the index.handlebars <input>
-  // console.log(req.body.burger_id);
-  // burger.updateOne(req.body.burger_id, function(result) {
-  //
-  //   res.redirect('/');
-  // });
+    res.redirect('/');
 });
 
 router.delete('/update', function (req, res) {
-  // burger.deleteOne(req.body.burger_id, function(result) {
-  //   res.redirect('/');
-  // });
+    res.redirect('/');
 });
 
 module.exports = router;
