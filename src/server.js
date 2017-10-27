@@ -6,16 +6,34 @@ const methodOverride  = require('method-override');
 const exphbs = require('express-handlebars');
 
 //execute file that will connect to mysql database
-const sequelize = new Sequelize('uwxuo05qykyuh266', 'quom4dims56mgykv', 'ywdzwrcppqzqwvb4', {
-  host: 'ipobfcpvprjpmdo9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  dialect: 'mysql',
-  logging: false,
-  pool: {
-    max: 10,
-    min: 1,
-    idle: 75000
-  }
+// needed to connect to the database
+const mysql = require('mysql');
+
+// setting the connection to a variable
+const pool = mysql.createPool( {
+	connectTimeout: 300000,
+	host: 'ipobfcpvprjpmdo9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+	user: 'quom4dims56mgykv',
+	password: 'ywdzwrcppqzqwvb4',
+	database: 'uwxuo05qykyuh266'
 });
+
+//found online to help trouble shoot the server disconnect when using cleardb
+function handleDisconnect() {
+  pool.getConnection(function(err, connection){
+      if(err) { return; }
+      connection.query( "SELECT 1", function(err, rows) {
+        connection.release();
+        if (err) {
+            console.log("QUERY ERROR: " + err);
+        }
+      });
+  });
+}
+
+
+handleDisconnect();
+
 
 // Import routes and give the server access to them.
 const routes = require('./controllers/routes');
@@ -64,11 +82,11 @@ app.listen(PORT, function() {
 });
 
 //testing if sequelize is connected, working.
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
