@@ -18,7 +18,7 @@
     <div class="col text-center" id='one'class="task">
       <h3>Burgers Not Eaten</h3>
         {{!-- each is a loop through all burger data --}}
-        {{#each burger_data}}
+        {{#each burger_false}}
         {{!-- unless = if returns a false value --}}
           {{#unless this.devoured}}
           <div class='row'>
@@ -45,7 +45,7 @@
     <div class="col text-center" id='two' class="task">
       <h3>Burgers Eaten</h3>
       <div class="row"><br /><br />
-        {{#each burger_data}}
+        {{#each burger_true}}
         {{!-- if = if it returns false, undefined, null, '', 0 , [], it will not render/run --}}
           {{#if this.devoured}}
             <div class='col-9'>
