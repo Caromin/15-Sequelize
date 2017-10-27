@@ -9,11 +9,11 @@ const exphbs = require('express-handlebars');
 const sequelize = new Sequelize('xnu6trfzzawwpqj1', 'e5xlptjfuze1r0kc', 'rbmjz6s8zv0uwsa5', {
   host: 'z1ntn1zv0f1qbh8u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   dialect: 'mysql',
-
+  logging: false,
   pool: {
     max: 10,
     min: 0,
-    idle: 75000,
+    idle: 75000
   }
 });
 

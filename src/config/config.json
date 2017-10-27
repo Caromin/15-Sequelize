@@ -6,15 +6,11 @@
     "host": "z1ntn1zv0f1qbh8u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
-    "use_env_variable": "mysql://e5xlptjfuze1r0kc:rbmjz6s8zv0uwsa5@z1ntn1zv0f1qbh8u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xnu6trfzzawwpqj1",
+    "username": "e5xlptjfuze1r0kc",
+    "password": "rbmjz6s8zv0uwsa5",
+    "database": "xnu6trfzzawwpqj1",
+    "host": "z1ntn1zv0f1qbh8u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
