@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Learning1",
-    "database": "sequelizeburgers_db",
-    "host": "127.0.0.1",
+    "username": "bcc14fb1730453",
+    "password": "40d4dcaf",
+    "database": "heroku_472b2c36fd35cda",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
     "dialect": "mysql"
   },
   "test": {

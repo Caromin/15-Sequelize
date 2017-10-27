@@ -6,8 +6,8 @@ const methodOverride  = require('method-override');
 const exphbs = require('express-handlebars');
 
 //execute file that will connect to mysql database
-const sequelize = new Sequelize('sequelizeburgers_db', 'root', 'Learning1', {
-  host: 'localhost',
+const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d4dcaf', {
+  host: 'us-cdbr-iron-east-05.cleardb.net',
   dialect: 'mysql',
 
   pool: {
