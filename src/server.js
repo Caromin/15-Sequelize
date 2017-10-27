@@ -21,7 +21,9 @@ const sequelize = new Sequelize('heroku_472b2c36fd35cda', 'bcc14fb1730453', '40d
     max: 10,
     min: 0,
     idle: 75000,
-    reconnect: reconnectOptions || true
+    reconnect: reconnectOptions || true,
+    handleDisconnects: true,
+    validate()
   }
 });
 
