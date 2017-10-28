@@ -8,34 +8,16 @@ var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 
 //execute file that will connect to mysql database
-// needed to connect to the database
-var mysql = require('mysql');
+var sequelize = new Sequelize('heroku_80070e9992623dd', 'b9efa07c046c6a', '1fc42d2c', {
+  host: 'us-cdbr-iron-east-05.cleardb.net',
+  dialect: 'mysql',
 
-// setting the connection to a variable
-var pool = mysql.createPool({
-  connectTimeout: 300000,
-  host: 'ipobfcpvprjpmdo9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  user: 'quom4dims56mgykv',
-  password: 'ywdzwrcppqzqwvb4',
-  database: 'uwxuo05qykyuh266'
+  pool: {
+    max: 10,
+    min: 0,
+    idle: 75000
+  }
 });
-
-//found online to help trouble shoot the server disconnect when using cleardb
-function handleDisconnect() {
-  pool.getConnection(function (err, connection) {
-    if (err) {
-      return;
-    }
-    connection.query("SELECT 1", function (err, rows) {
-      connection.release();
-      if (err) {
-        console.log("QUERY ERROR: " + err);
-      }
-    });
-  });
-}
-
-handleDisconnect();
 
 // Import routes and give the server access to them.
 var routes = require('./controllers/routes');
